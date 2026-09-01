@@ -22,10 +22,12 @@ public class Main {
         );
 
         // PROBLEMA 1 (SRP): uma única classe formata, grava E envia o relatório.
-        RelatorioAluno relatorio = new RelatorioAluno();
-        String conteudo = relatorio.formatar(alunos);
-        relatorio.salvarEmArquivo(conteudo, "relatorios/alunos.txt");
-        relatorio.enviarPorEmail(conteudo, "coordenacao@exemplo.edu");
+        RelatorioFormatador RelatorioFormatador = new RelatorioFormatador();
+        RelatorioRepositorio RelatorioRepositorio = new RelatorioRepositorio();
+        ServicoEmail ServicoEmail = new ServicoEmail();
+        String conteudo = RelatorioFormatador.formatar(alunos);
+        RelatorioRepositorio.salvarEmArquivo(conteudo, "relatorios/alunos.txt");
+        ServicoEmail.enviarPorEmail(conteudo, "coordenacao@exemplo.edu");
 
         System.out.println();
 
