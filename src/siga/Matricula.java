@@ -36,8 +36,8 @@ public class Matricula {
     }
 
     // Violação do OCP: um novo desconto = mais um ramo condicional aqui.
-    public double calcularMensalidade(double valor) {
-        return this.tipoDesconto.aplicar(double valor);
+    public double calcularMensalidade() {
+        return this.tipoDesconto.aplicar(valorBase);
     }   
 
     // Persiste a matrícula usando a implementação concreta (acoplamento indevido).
