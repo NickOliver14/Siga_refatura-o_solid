@@ -23,15 +23,16 @@ public class Matricula {
 
     private Aluno aluno;
     private double valorBase;
-    private Desconto tipoDesconto;   // "NENHUM", "BOLSISTA", "CONVENIO", "FUNCIONARIO"...
+    private Desconto tipoDesconto;
+    private MatriculaRepositorio matricula;   // "NENHUM", "BOLSISTA", "CONVENIO", "FUNCIONARIO"...
 
     // Violação do DIP: dependência direta da classe concreta.
-    private GravadorMySQL gravador = new GravadorMySQL();
 
-    public Matricula(Aluno aluno, double valorBase, Desconto tipoDesconto) {
+    public Matricula(Aluno aluno, double valorBase, Desconto tipoDesconto, MatriculaRepositorio matricula) {
         this.aluno = aluno;
         this.valorBase = valorBase;
         this.tipoDesconto = tipoDesconto;
+        this.matricula = matricula;
     }
 
     // Violação do OCP: um novo desconto = mais um ramo condicional aqui.
@@ -41,7 +42,7 @@ public class Matricula {
 
     // Persiste a matrícula usando a implementação concreta (acoplamento indevido).
     public void salvar() {
-        gravador.gravar("Matrícula de " + aluno.getNome()
+        matricula.gravar("Matrícula de " + aluno.getNome()
                 + " - mensalidade: " + calcularMensalidade());
     }
 }
